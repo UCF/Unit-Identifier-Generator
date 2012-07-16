@@ -1,0 +1,144 @@
+/**
+    * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+    * http://cssreset.com
+    */
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed,
+    figure, figcaption, footer, header, hgroup,
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure,
+    footer, header, hgroup, menu, nav, section {
+    display: block;
+    }
+    body {
+    line-height: 1;
+    }
+    ol, ul {
+    list-style: none;
+    }
+    blockquote, q {
+    quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+    content: '';
+    content: none;
+    }
+    table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    }
+
+/**
+  * Americana Import
+  **/
+@font-face {
+    font-family: 'AmericanaRegular';
+    src: url('fonts/ameri-webfont.eot');
+    src: url('fonts/ameri-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/ameri-webfont.woff') format('woff'),
+         url('fonts/ameri-webfont.ttf') format('truetype'),
+         url('fonts/ameri-webfont.svg#AmericanaRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/**
+  * Site styles: 
+  **/
+
+body {
+	width: 100%;
+}
+
+body, td, th, label, h5 {
+    font-family: Georgia,Times New Roman,Times,serif;
+    font-size: 13px;
+    line-height: 1.4em;
+}
+
+h5 {
+	font-weight: bold;
+}
+
+input {
+	display: block;
+}
+
+#uid_preview_wrap {
+	overflow: hidden;
+	width: 100%;
+	height: 200px;
+	background: #dedede;
+}
+
+.uid_preview {
+	width: 260px;
+	height: 200px;
+	font-family: 'AmericanaRegular', Georgia, serif;
+	font-variant: small-caps;
+	letter-spacing: 1.3px;
+}
+	#uid_img, #muid_img, #vuid_img {
+		width: 260px;
+		height: 200px;
+		position: relative;
+		margin: auto;
+	}
+	#uid_img {
+		background: url('img/UID-preview.png') center center no-repeat;
+		display: visible; /* Default active preview */
+	}
+	#muid_img {
+		background: url('img/MUID-preview.png') center center no-repeat;
+		display: none;
+	}
+	#vuid_img {
+		background: url('img/VMUID-preview.png') center center no-repeat;
+		display: none;
+	}
+	#uid_text, #muid_text, #vuid_text {
+		position: absolute;
+		/*background: green;*/
+	}
+		#uid_text {
+			top: 137px;
+			width: 260px;
+			height: 50px;
+			font-size: 13px;
+			line-height: 11px;
+			text-align: center;
+		}
+		#muid_text {
+			top: 91px;
+			left: 141px;
+			width: 119px;
+			font-size: 16px;
+			line-height: 14.5px;
+		}
+		#vuid_text {
+			top: 120px;
+			width: 100%;
+			height: 56px;
+			font-size: 36px;
+			line-height: 30px;
+			text-align: center;
+		}
