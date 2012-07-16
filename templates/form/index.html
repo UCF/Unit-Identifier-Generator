@@ -33,7 +33,7 @@
 		
 		<p><a class="previewlink" id="previewlink_uid" href="#">UID</a> | <a class="previewlink" id="previewlink_muid" href="#">MUID</a> | <a class="previewlink" id="previewlink_vuid" href="#">Vertical UID</a></p>
 		
-		<form action="." method="post">
+		<form action="/form/submit/" method="post">
 			{% csrf_token %}
 			<label for="name">Requested Unit Name</label>
 			<input id="name" class="textinput" type="text" size="25" name="name" value="Dept Name Here" placeholder="Dept Name Here">

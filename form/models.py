@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Request(models.Model):
+class Submission(models.Model):
 	requester = models.CharField("requested by", max_length=300)
 	unit_name = models.CharField("unit name", max_length=300)
 	department = models.CharField(max_length=300)
@@ -14,8 +14,8 @@ class Request(models.Model):
 		return self.unit_name
 	
 class Logo(models.Model):
-	request_id = models.ForeignKey(Request),
-	request_name = models.ForeignKey(Request, to_field="unit_name"),
+	submission_id = models.ForeignKey(Submission),
+	submission_name = models.ForeignKey(Submission, to_field="unit_name"),
 	design_option = models.CharField(max_length=400)
 	# Now we store each generated color version of the given design option:
 	# ... if I can figure out how to store the files...

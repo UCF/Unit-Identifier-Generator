@@ -1,5 +1,5 @@
-from form.models import Request, Logo
+from form.models import Submission, Logo
 from django.contrib import admin
 
-admin.site.register(Request)
+admin.site.register(Submission)
 admin.site.register(Logo)
