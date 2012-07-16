@@ -11,7 +11,13 @@
 		<h5>Submit a Request</h5>
 		<p>Logo request may take up to two weeks to fill. For more urgent requests, please contact us. For unit logo requests, please fill out the form below completely. For standard UCF logos files please see the trademark downloads on this page.</p>
 
-		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+		{% if errors %}
+		<ul id="errors">
+			{% for error in errors %}
+		    	<li class="error">{{ error }}</li>
+		    {% endfor %}
+		</ul>
+		{% endif %}
 
 		<div id="uid_preview_wrap">
 			<div class="uid_preview preview_active" id="uid_img">
@@ -33,29 +39,29 @@
 		
 		<p><a class="previewlink" id="previewlink_uid" href="#">UID</a> | <a class="previewlink" id="previewlink_muid" href="#">MUID</a> | <a class="previewlink" id="previewlink_vuid" href="#">Vertical UID</a></p>
 		
-		<form action="/form/submit/" method="post">
+		<form action="/submit/" method="post">
 			{% csrf_token %}
 			<label for="name">Requested Unit Name</label>
-			<input id="name" class="textinput" type="text" size="25" name="name" value="Dept Name Here" placeholder="Dept Name Here">
+			<input id="name" class="textinput" type="text" size="25" name="name" value="{{ name }}" placeholder="Dept Name Here">
 	
 			<label for="requested_by">Requested by</label>
-			<input id="requested_by" class="textinput" type="text" size="25" name="requested_by">
+			<input id="requested_by" class="textinput" type="text" size="25" name="requested_by" value="{{ requested_by }}">
 	
 			<label for="phone">Phone Number</label>
-			<input id="phone" class="textinput" type="text" size="25" name="phone">
+			<input id="phone" class="textinput" type="text" size="25" name="phone" value="{{ phone }}">
 	
 			<label for="email">E-mail</label>
-			<input id="email" class="textinput" type="text" size="25" name="email">
+			<input id="email" class="textinput" type="text" size="25" name="email" value="{{ email }}">
 	
 			<label for="department">Department/College</label>
-			<input id="department" class="textinput" type="text" size="25" name="department">
+			<input id="department" class="textinput" type="text" size="25" name="department" value="{{ department }}">
 	
 			<label for="logo_type">Type of logo</label>
-			<input id="UnitID" type="checkbox" value="x" name="logo_type">
+			<input id="UnitID" type="checkbox" value="UID" name="logo_type">
 			Unit Identifier (UID)
-			<input id="Monogram" type="checkbox" value="x" name="logo_type">
+			<input id="Monogram" type="checkbox" value="MUID" name="logo_type">
 			Monogram Unit Identifier
-			<input id="VertMonoID" type="checkbox" value="x" name="logo_type">
+			<input id="VertMonoID" type="checkbox" value="VUID" name="logo_type">
 			Vertical Monogram UID
 			<input type="submit" value="Submit" />
 		</form>

@@ -79,6 +79,15 @@ h5 {
 	font-weight: bold;
 }
 
+#errors {
+	margin: 10px 0;
+}
+.error {
+	font-weight: bold;
+	color: #f00;
+	font-style: italic;
+}
+
 input {
 	display: block;
 }
