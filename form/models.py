@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 
 # Create your models here.
 class Submission(models.Model):
@@ -42,4 +43,7 @@ class Logo(models.Model):
 	# color_wg_b = models.FileField()
 	def __unicode__(self):
 		return self.request_name
-	
+
+class SubmissionForm(ModelForm):
+	class Meta:
+		model = Submission

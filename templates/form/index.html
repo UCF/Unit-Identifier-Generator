@@ -41,6 +41,8 @@
 		
 		<form action="/submit/" method="post">
 			{% csrf_token %}
+			{{ form.as_p }}
+			<!--
 			<label for="name">Requested Unit Name</label>
 			<input id="name" class="textinput" type="text" size="25" name="name" value="{{ name }}" placeholder="Dept Name Here">
 	
@@ -62,7 +64,7 @@
 			<input id="Monogram" type="checkbox" value="MUID" name="logo_type">
 			Monogram Unit Identifier
 			<input id="VertMonoID" type="checkbox" value="VUID" name="logo_type">
-			Vertical Monogram UID
+			Vertical Monogram UID-->
 			<input type="submit" value="Submit" />
 		</form>
 
