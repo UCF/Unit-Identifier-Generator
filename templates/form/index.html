@@ -11,14 +11,6 @@
 		<h5>Submit a Request</h5>
 		<p>Logo request may take up to two weeks to fill. For more urgent requests, please contact us. For unit logo requests, please fill out the form below completely. For standard UCF logos files please see the trademark downloads on this page.</p>
 
-		{% if errors %}
-		<ul id="errors">
-			{% for error in errors %}
-		    	<li class="error">{{ error }}</li>
-		    {% endfor %}
-		</ul>
-		{% endif %}
-
 		<div id="uid_preview_wrap">
 			<div class="uid_preview preview_active" id="uid_img">
 				<div id="uid_text" class="textfill">
@@ -41,7 +33,7 @@
 		
 		<form action="/submit/" method="post">
 			{% csrf_token %}
-			{{ form.as_p }}
+			{{ form }}
 			<!--
 			<label for="name">Requested Unit Name</label>
 			<input id="name" class="textinput" type="text" size="25" name="name" value="{{ name }}" placeholder="Dept Name Here">

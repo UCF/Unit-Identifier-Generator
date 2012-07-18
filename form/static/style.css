@@ -79,17 +79,24 @@ h5 {
 	font-weight: bold;
 }
 
-#errors {
-	margin: 10px 0;
-}
-.error {
-	font-weight: bold;
+ul.errorlist li {
 	color: #f00;
 	font-style: italic;
 }
 
+label {
+	display:block;
+	margin-top: 10px;
+	font-size:14px;
+	font-weight:bold;
+}
+
 input {
 	display: block;
+}
+
+input[type="submit"] {
+	margin-top:10px;
 }
 
 #uid_preview_wrap {
