@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
-from form.models import Submission, Logo, SubmissionForm
+from form.models import Submission, SubmissionForm
 
 # Create your views here.
 
