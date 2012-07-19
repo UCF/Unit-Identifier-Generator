@@ -47,3 +47,4 @@ class Logo(models.Model):
 class SubmissionForm(ModelForm):
 	class Meta:
 		model = Submission
+		fields = ('unit_name', 'requester', 'department', 'phone', 'email')

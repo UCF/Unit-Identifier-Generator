@@ -10,7 +10,6 @@ urlpatterns = patterns('',
         CreateView.as_view(
             model=Submission,
             template_name='form/index.html')),
-	url(r'^submit/$', 'form.views.submit'),
 	url(r'^download/$',
 		CreateView.as_view(
 			model=Submission,

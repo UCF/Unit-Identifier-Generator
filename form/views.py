@@ -8,10 +8,6 @@ from form.models import Submission, Logo, SubmissionForm
 # Create your views here.
 
 def index(request):
-	form = SubmissionForm(request.POST)
-	return render_to_response('form/index.html', {'form': form}, context_instance=RequestContext(request))
-
-def submit(request):
 	errors = []
         if request.method == 'POST':
 			
@@ -31,5 +27,4 @@ def submit(request):
 		}, context_instance=RequestContext(request))
 
 def download(request):
-	p = get_object_or_404(Submission)
 	return render_to_response('form/download.html', context_instance=RequestContext(request))
