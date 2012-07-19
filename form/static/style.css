@@ -103,7 +103,7 @@ input[type="submit"] {
 	overflow: hidden;
 	width: 100%;
 	height: 200px;
-	background: #dedede;
+	background: #dedede url('img/previewbg.png') repeat;
 }
 
 .uid_preview {
@@ -114,7 +114,7 @@ input[type="submit"] {
 	letter-spacing: 1.3px;
 }
 	#uid_img, #muid_img, #vuid_img {
-		width: 260px;
+		width: 450px;
 		height: 200px;
 		position: relative;
 		margin: auto;
@@ -124,7 +124,7 @@ input[type="submit"] {
 		display: visible; /* Default active preview */
 	}
 	#muid_img {
-		background: url('img/MUID-preview.png') center center no-repeat;
+		background: url('img/MUID-preview.png') left center no-repeat;
 		display: none;
 	}
 	#vuid_img {
@@ -137,6 +137,7 @@ input[type="submit"] {
 	}
 		#uid_text {
 			top: 137px;
+			left: 95px;
 			width: 260px;
 			height: 50px;
 			font-size: 13px;
@@ -146,14 +147,17 @@ input[type="submit"] {
 		#muid_text {
 			top: 91px;
 			left: 141px;
-			width: 119px;
+			width: 310px;
+			height: 27px;
 			font-size: 16px;
-			line-height: 14.5px;
+			line-height: 14px;
 		}
 		#vuid_text {
 			top: 120px;
-			width: 100%;
-			height: 56px;
+			left: 95px;
+			margin: auto;
+			width: 260px;
+			height: 66px;
 			font-size: 36px;
 			line-height: 30px;
 			text-align: center;

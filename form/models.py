@@ -3,8 +3,8 @@ from django.forms import ModelForm
 
 # Create your models here.
 class Submission(models.Model):
-	requester = models.CharField("requested by", max_length=300)
 	unit_name = models.CharField("unit name", max_length=300)
+	requester = models.CharField("requested by", max_length=300)
 	department = models.CharField(max_length=300)
 	phone = models.CharField("phone number", max_length=50)
 	email = models.EmailField(max_length=254)
