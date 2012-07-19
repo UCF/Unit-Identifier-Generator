@@ -84,7 +84,7 @@
 			})
 
 			/* Default dept. name */
-			if (!($('#name').text())) {
+			if (!($('#id_unit_name').text())) {
 				$('.textfill').text('Dept Name Here');
 			}
 
@@ -94,7 +94,7 @@
 		    $('#muid_text span').textfill({ maxFontPixels: 16 });
 		    $('#vuid_text span').textfill({ maxFontPixels: 36 });
 
-		    $('#name').keyup(function() {
+		    $('#id_unit_name').keyup(function() {
 		    	$('.textfill').html(this.value);
 		    	$('#uid_text span').textfill({ maxFontPixels: 10 });
 		    	$('#muid_text span').textfill({ maxFontPixels: 16 });
