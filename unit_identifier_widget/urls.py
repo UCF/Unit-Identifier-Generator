@@ -6,13 +6,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$',
-        CreateView.as_view(
-            model=Submission,
-            template_name='form/index.html')),
-	url(r'^download/$',
-		CreateView.as_view(
-			model=Submission,
-			template_name='form/download.html')),
+	url(r'^$', 'form.views.index'),
+	url(r'^download/$', 'form.views.download'),
 	url(r'^admin/', include(admin.site.urls)),
 )

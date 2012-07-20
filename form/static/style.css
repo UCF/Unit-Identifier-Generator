@@ -1,52 +1,4 @@
 /**
-    * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
-    * http://cssreset.com
-    */
-    html, body, div, span, applet, object, iframe,
-    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-    a, abbr, acronym, address, big, cite, code,
-    del, dfn, em, img, ins, kbd, q, s, samp,
-    small, strike, strong, sub, sup, tt, var,
-    b, u, i, center,
-    dl, dt, dd, ol, ul, li,
-    fieldset, form, label, legend,
-    table, caption, tbody, tfoot, thead, tr, th, td,
-    article, aside, canvas, details, embed,
-    figure, figcaption, footer, header, hgroup,
-    menu, nav, output, ruby, section, summary,
-    time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-    }
-    /* HTML5 display-role reset for older browsers */
-    article, aside, details, figcaption, figure,
-    footer, header, hgroup, menu, nav, section {
-    display: block;
-    }
-    body {
-    line-height: 1;
-    }
-    ol, ul {
-    list-style: none;
-    }
-    blockquote, q {
-    quotes: none;
-    }
-    blockquote:before, blockquote:after,
-    q:before, q:after {
-    content: '';
-    content: none;
-    }
-    table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    }
-
-/**
   * Americana Import
   **/
 @font-face {
@@ -70,9 +22,9 @@ body {
 }
 
 body, td, th, label, h5 {
-    font-family: Georgia,Times New Roman,Times,serif;
+    /*font-family: Georgia,Times New Roman,Times,serif;
     font-size: 13px;
-    line-height: 1.4em;
+    line-height: 1.4em;*/
 }
 
 h5 {
@@ -82,12 +34,12 @@ h5 {
 ul.errorlist li {
 	color: #f00;
 	font-style: italic;
+	list-style-type: none;
+	margin-left: -15px;
 }
 
 label {
 	display:block;
-	margin-top: 10px;
-	font-size:14px;
 	font-weight:bold;
 }
 
@@ -137,7 +89,7 @@ input[type="submit"] {
 	}
 		#uid_text {
 			top: 137px;
-			left: 95px;
+			left: 97px;
 			width: 260px;
 			height: 50px;
 			font-size: 13px;
@@ -150,15 +102,30 @@ input[type="submit"] {
 			width: 310px;
 			height: 27px;
 			font-size: 16px;
-			line-height: 14px;
+			line-height: 15.25px;
 		}
 		#vuid_text {
 			top: 120px;
 			left: 95px;
-			margin: auto;
 			width: 260px;
 			height: 66px;
 			font-size: 36px;
 			line-height: 30px;
 			text-align: center;
 		}
+
+#uid_preview_toggle {
+	margin: 10px auto 20px auto;
+	width: 450px;
+}
+#uid_preview_label {
+	width: 40%;
+	float: left;
+	padding: 5px 0;
+	font-weight: bold;
+	text-align: center;
+}
+#uid_preview_toggle .btn-group {
+	width: 60%;
+	float:left;
+}

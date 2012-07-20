@@ -8,21 +8,22 @@ from form.models import Submission, SubmissionForm
 def index(request):
 	errors = []
         if request.method == 'POST':
-			
 			form = SubmissionForm(request.POST)
 			if not errors and form.is_valid():
 				form.save()
-				return HttpResponseRedirect('/download/')
-				
-        return render_to_response('form/index.html', {
-			'form': form,
-			'errors': errors,
-			'name': request.POST.get('name', ''),
-			'requested_by': request.POST.get('requested_by', ''),
-			'phone': request.POST.get('phone', ''),
-			'email': request.POST.get('email', ''),
-			'department': request.POST.get('department', ''),
-		}, context_instance=RequestContext(request))
+				return HttpResponseRedirect('/download/')	
+	else:
+		form = SubmissionForm()
+		
+	return render_to_response('form/index.html', {
+		'form': form,
+		'errors': errors,
+		'name': request.POST.get('name', ''),
+		'requested_by': request.POST.get('requested_by', ''),
+		'phone': request.POST.get('phone', ''),
+		'email': request.POST.get('email', ''),
+		'department': request.POST.get('department', ''),
+	}, context_instance=RequestContext(request))
 
 def download(request):
 	return render_to_response('form/download.html', context_instance=RequestContext(request))
