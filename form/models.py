@@ -3,6 +3,7 @@ from django.db import models
 from django.forms import ModelForm, MultipleChoiceField
 from django.utils.text import capfirst
 from django.core import exceptions
+from datetime import datetime
 
 # Form Field classes: via http://djangosnippets.org/snippets/2753/
 
@@ -100,7 +101,7 @@ class Submission(models.Model):
 	phone = models.CharField("Phone Number", max_length=50)
 	email = models.EmailField(max_length=254)
 	department = models.CharField(max_length=300)
-	request_date = models.DateTimeField("Requested On", auto_now_add=True)
+	request_date = models.DateTimeField("Requested On", default=datetime.now)
 	design_options = MultiSelectField(max_length=250, choices=LOGO_TYPES)
 	# Add generated file output here when I actually figure that out...
 	def __unicode__(self):
@@ -144,3 +145,4 @@ class SubmissionForm(ModelForm):
 	
 	class Meta:
 		model = Submission
+		fields = ['unit_name', 'requester', 'phone', 'email', 'department', 'design_options']
