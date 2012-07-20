@@ -51,6 +51,19 @@ input[type="submit"] {
 	margin-top:10px;
 }
 
+form ul li {
+	list-style-type: none;
+	margin-left: -15px;
+}
+	form ul li label {
+		font-weight: normal;
+	}
+	form ul li label input {
+		float:left;
+		margin-right:5px !important;
+		margin-top:2px !important;
+	}
+
 #uid_preview_wrap {
 	overflow: hidden;
 	width: 100%;

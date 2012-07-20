@@ -4,7 +4,7 @@ from django.forms import ModelForm, MultipleChoiceField
 from django.utils.text import capfirst
 from django.core import exceptions
 
-# Form Field classes: via 
+# Form Field classes: via http://djangosnippets.org/snippets/2753/
 
 class MultiSelectFormField(forms.MultipleChoiceField):
     widget = forms.CheckboxSelectMultiple
@@ -95,12 +95,12 @@ LOGO_TYPES = (
 )
 
 class Submission(models.Model):
-	unit_name = models.CharField("unit name", max_length=300)
-	requester = models.CharField("requested by", max_length=300)
-	department = models.CharField(max_length=300)
-	phone = models.CharField("phone number", max_length=50)
+	unit_name = models.CharField("Unit Name", max_length=300)
+	requester = models.CharField("Requested By", max_length=300)
+	phone = models.CharField("Phone Number", max_length=50)
 	email = models.EmailField(max_length=254)
-	request_date = models.DateTimeField("requested on", auto_now_add=True)
+	department = models.CharField(max_length=300)
+	request_date = models.DateTimeField("Requested On", auto_now_add=True)
 	design_options = MultiSelectField(max_length=250, choices=LOGO_TYPES)
 	# Add generated file output here when I actually figure that out...
 	def __unicode__(self):
@@ -137,5 +137,10 @@ class Submission(models.Model):
 #		return self.request_name
 
 class SubmissionForm(ModelForm):
+	def __init__(self, *args, **kwargs):
+		super(SubmissionForm, self).__init__(*args, **kwargs)
+		self.fields['requester'].label = 'Your Name'
+		self.fields['department'].label = 'Your Department/Office/College'
+	
 	class Meta:
 		model = Submission

@@ -13,9 +13,13 @@
 		<script type="text/javascript" src="{% static user_stylesheet %}/js/script.js"></script>
 	</head>
 	<body>
-
-		<h2>Submit a Request</h2>
-		<p>Logo request may take up to two weeks to fill. For more urgent requests, please contact us. For unit logo requests, please fill out the form below completely. For standard UCF logos files please see the trademark downloads on this page.</p>
+		
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<h2>Submit a Request</h2>
+				<p>Logo request may take up to two weeks to fill. For more urgent requests, please contact us. For unit logo requests, please fill out the form below completely. For standard UCF logos files please see the trademark downloads on this page.</p>
+			</div>
+		</div>
 
 		<div id="uid_preview_wrap">
 			<div class="uid_preview preview_active" id="uid_img">
@@ -44,34 +48,15 @@
 			</div>
 		</div>
 		
-		<form action="" method="post">
-			{% csrf_token %}
-			{{ form }}
-			<!--
-			<label for="name">Requested Unit Name</label>
-			<input id="name" class="textinput" type="text" size="25" name="name" value="{{ name }}" placeholder="Dept Name Here">
-	
-			<label for="requested_by">Requested by</label>
-			<input id="requested_by" class="textinput" type="text" size="25" name="requested_by" value="{{ requested_by }}">
-	
-			<label for="phone">Phone Number</label>
-			<input id="phone" class="textinput" type="text" size="25" name="phone" value="{{ phone }}">
-	
-			<label for="email">E-mail</label>
-			<input id="email" class="textinput" type="text" size="25" name="email" value="{{ email }}">
-	
-			<label for="department">Department/College</label>
-			<input id="department" class="textinput" type="text" size="25" name="department" value="{{ department }}">
-	
-			<label for="logo_type">Type of logo</label>
-			<input id="UnitID" type="checkbox" value="UID" name="logo_type">
-			Unit Identifier (UID)
-			<input id="Monogram" type="checkbox" value="MUID" name="logo_type">
-			Monogram Unit Identifier
-			<input id="VertMonoID" type="checkbox" value="VUID" name="logo_type">
-			Vertical Monogram UID-->
-			<input type="submit" value="Submit" />
-		</form>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<form action="" method="post">
+					{% csrf_token %}
+					{{ form }}
+					<input type="submit" value="Submit" />
+				</form>
+			</div>
+		</div>
 
 	</body>
 </html>
