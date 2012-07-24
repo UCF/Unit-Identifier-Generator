@@ -3,11 +3,11 @@
   **/
 @font-face {
     font-family: 'AmericanaRegular';
-    src: url('fonts/ameri-webfont.eot');
-    src: url('fonts/ameri-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/ameri-webfont.woff') format('woff'),
-         url('fonts/ameri-webfont.ttf') format('truetype'),
-         url('fonts/ameri-webfont.svg#AmericanaRegular') format('svg');
+    src: url('fonts/ameribol-webfont.eot');
+    src: url('fonts/ameribol-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/ameribol-webfont.woff') format('woff'),
+         url('fonts/ameribol-webfont.ttf') format('truetype'),
+         url('fonts/ameribol-webfont.svg#AmericanaBold') format('svg');
     font-weight: normal;
     font-style: normal;
 
