@@ -6,7 +6,10 @@ from form.models import Submission, SubmissionForm
 
 import PIL
 from PIL import Image
+from PIL import ImageFont
 from PIL import ImageDraw
+
+import textwrap
 
 # Create your views here.
 
@@ -16,16 +19,22 @@ def index(request):
 			form = SubmissionForm(request.POST)
 			if not errors and form.is_valid():
 				
-				unit_name = slugify(request.POST.get('unit_name'))
+				unit_name = request.POST.get('unit_name')
+				unit_name_slug = slugify(unit_name)
+				font = ImageFont.truetype("form/static/fonts/ameri-webfont.ttf", 15) #replace 15 with font size
 				
 				# Let's do some stuff...
 				
-				muid_k = Image.open("form/static/img/muid/muid-template-rgb.png")
+				muid_k = Image.open("form/static/img/muid/muid-template-rgb.png")				
 				draw = ImageDraw.Draw(muid_k)
+				
+				draw.text((0, 0), unit_name, (0,0,0), font=font) #position, text, color, font
+				draw = ImageDraw.Draw(muid_k)
+				
 				muid_k.save(unit_name + "-K.png")
 				muid_k.save(unit_name + "-K.jpeg")
-				muid_k.convert("CMYK").save(unit_name + "-K.pdf")
-				muid_k.convert("CMYK").save(unit_name + "-K.eps")
+				muid_k.convert("CMYK").save(unit_name_slug + "-K.pdf")
+				muid_k.convert("CMYK").save(unit_name_slug + "-K.eps")
 				
 				form.save()
 				return HttpResponseRedirect('/download/')	
