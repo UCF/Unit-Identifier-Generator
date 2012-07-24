@@ -1,8 +1,10 @@
 from django.shortcuts import get_object_or_404, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
+from django.template.defaultfilters import slugify
 from form.models import Submission, SubmissionForm
 
+import PIL
 from PIL import Image
 from PIL import ImageDraw
 
@@ -13,11 +15,17 @@ def index(request):
         if request.method == 'POST':
 			form = SubmissionForm(request.POST)
 			if not errors and form.is_valid():
+				
+				unit_name = slugify(request.POST.get('unit_name'))
+				
 				# Let's do some stuff...
 				
-				img=Image.new("RGBA", (200,200),(120,20,20))
-				draw = ImageDraw.Draw(img)
-				img.save("a_test.png")
+				muid_k = Image.open("form/static/img/muid/muid-template-rgb.png")
+				draw = ImageDraw.Draw(muid_k)
+				muid_k.save(unit_name + "-K.png")
+				muid_k.save(unit_name + "-K.jpeg")
+				muid_k.convert("CMYK").save(unit_name + "-K.pdf")
+				muid_k.convert("CMYK").save(unit_name + "-K.eps")
 				
 				form.save()
 				return HttpResponseRedirect('/download/')	
