@@ -3,6 +3,9 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from form.models import Submission, SubmissionForm
 
+from PIL import Image
+from PIL import ImageDraw
+
 # Create your views here.
 
 def index(request):
@@ -10,6 +13,12 @@ def index(request):
         if request.method == 'POST':
 			form = SubmissionForm(request.POST)
 			if not errors and form.is_valid():
+				# Let's do some stuff...
+				
+				img=Image.new("RGBA", (200,200),(120,20,20))
+				draw = ImageDraw.Draw(img)
+				img.save("a_test.png")
+				
 				form.save()
 				return HttpResponseRedirect('/download/')	
 	else:
