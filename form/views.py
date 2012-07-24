@@ -37,7 +37,9 @@ def index(request):
 				muid_k.convert("CMYK").save(unit_name_slug + "-K.eps")
 				
 				form.save()
-				return HttpResponseRedirect('/download/')	
+				return render_to_response('form/download.html', {
+					'design_options': request.POST.get('design_options', '')
+				}, context_instance=RequestContext(request))
 	else:
 		form = SubmissionForm()
 		
