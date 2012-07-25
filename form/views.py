@@ -3,13 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.template.defaultfilters import slugify
 from form.models import Submission, SubmissionForm
-
-import PIL
-from PIL import Image
-from PIL import ImageFont
-from PIL import ImageDraw
-
-import textwrap
+from form.idgen import IDGen
 
 # Create your views here.
 
@@ -21,24 +15,26 @@ def index(request):
 				
 				unit_name = request.POST.get('unit_name')
 				unit_name_slug = slugify(unit_name)
-				font = ImageFont.truetype("form/static/fonts/ameri-webfont.ttf", 15) #replace 15 with font size
+				unit_name_caps = unit_name.upper()
 				
-				# Let's do some stuff...
+				design_options = request.POST.getlist('design_options')
 				
-				muid_k = Image.open("form/static/img/muid/muid-template-rgb.png")				
-				draw = ImageDraw.Draw(muid_k)
+				# From here, need to run process only for each selected design option...
 				
-				draw.text((0, 0), unit_name, (0,0,0), font=font) #position, text, color, font
-				draw = ImageDraw.Draw(muid_k)
+				#if 'UID' in design_options:
+					# Do the UID stuff...
+				#if 'MUID' in design_options:
+					# Do the MUID stuff...
 				
-				muid_k.save(unit_name + "-K.png")
-				muid_k.save(unit_name + "-K.jpeg")
-				muid_k.convert("CMYK").save(unit_name_slug + "-K.pdf")
-				muid_k.convert("CMYK").save(unit_name_slug + "-K.eps")
+				muidgen = IDGen("MUID", unit_name_caps, unit_name_slug)
+				muidgen.temporaryrun()
+					
+				#if 'VUID' in design_options:
+					# Do the VUID stuff...
 				
 				form.save()
 				return render_to_response('form/download.html', {
-					'design_options': request.POST.get('design_options', '')
+					'design_options': design_options
 				}, context_instance=RequestContext(request))
 	else:
 		form = SubmissionForm()

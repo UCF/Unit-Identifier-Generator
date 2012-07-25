@@ -2,7 +2,7 @@
   * Americana Import
   **/
 @font-face {
-    font-family: 'AmericanaRegular';
+    font-family: 'AmericanaBold';
     src: url('fonts/ameribol-webfont.eot');
     src: url('fonts/ameribol-webfont.eot?#iefix') format('embedded-opentype'),
          url('fonts/ameribol-webfont.woff') format('woff'),
@@ -74,7 +74,7 @@ form ul li {
 .uid_preview {
 	width: 260px;
 	height: 200px;
-	font-family: 'AmericanaRegular', Georgia, serif;
+	font-family: 'AmericanaBold', Georgia, serif;
 	font-variant: small-caps;
 	letter-spacing: 1.3px;
 }

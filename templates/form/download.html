@@ -10,7 +10,13 @@
 
 		<h5>Submit a Request</h5>
 		<p>Success!  Your logos have been successfully generated.</p>
-		<p>Your logo selections were: {{ design_options }}</p>
+		<p>Your logo selections were: 
+			<ul>
+				{% for option in design_options %}
+				<li>{{ option }}</li>
+				{% endfor %}
+			</ul>
+		</p>
 		<p><a href="../">&laquo; Back to logo generator</a></p>		
 
 	</body>
