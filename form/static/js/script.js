@@ -101,22 +101,22 @@ $(document).ready(function(){
 			preview_width = 260,
 			muid_preview_width = 450,
 			span_upscale_ratio = full_size_width / preview_width,
-			muid_span_upscale_ratio = full_size_width / muid_preview_width,
+			muid_span_upscale_ratio = full_size_width / muid_preview_width/*,
 			uid_font_ratio = 5,
 			muid_font_ratio = 6.25,
-			vuid_font_ratio = 5.55;		
+			vuid_font_ratio = 5.55*/;		
 		
-		$('#uid_fontsize').val(Math.round(uid_fontsize * uid_font_ratio));
-		$('#muid_fontsize').val(Math.round(muid_fontsize * muid_font_ratio));
-		$('#vuid_fontsize').val(Math.round(vuid_fontsize * vuid_font_ratio));
+		$('#uid_fontsize').val(Math.round(uid_fontsize * span_upscale_ratio));
+		$('#muid_fontsize').val(Math.round(muid_fontsize * muid_span_upscale_ratio));
+		$('#vuid_fontsize').val(Math.round(vuid_fontsize * span_upscale_ratio));
 		
-		$('#uid_span_w').val(Math.round(uid_span_w /** span_upscale_ratio*/));
-		$('#muid_span_w').val(Math.round(muid_span_w /** muid_span_upscale_ratio*/));
-		$('#vuid_span_w').val(Math.round(vuid_span_w /** span_upscale_ratio*/));
+		$('#uid_span_w').val(Math.round(uid_span_w * span_upscale_ratio));
+		$('#muid_span_w').val(Math.round(muid_span_w * muid_span_upscale_ratio));
+		$('#vuid_span_w').val(Math.round(vuid_span_w * span_upscale_ratio));
 		
-		$('#uid_span_h').val(Math.round(uid_span_h /** span_upscale_ratio*/));
-		$('#muid_span_h').val(Math.round(muid_span_h /** muid_span_upscale_ratio*/));
-		$('#vuid_span_h').val(Math.round(vuid_span_h /** span_upscale_ratio*/));
+		$('#uid_span_h').val(Math.round(uid_span_h * span_upscale_ratio));
+		$('#muid_span_h').val(Math.round(muid_span_h * muid_span_upscale_ratio));
+		$('#vuid_span_h').val(Math.round(vuid_span_h * span_upscale_ratio));
 		
 		if ($('#muid_text span br').length > 0) {
 			$('#muid_linebreak').val('y');
