@@ -36,6 +36,30 @@ $(document).ready(function(){
 	}
 	
 	
+	/* Define updates to hidden form field values */
+	
+	var hidden_field_update = function() {
+		
+		$('#uid_fontsize').val(Math.round($('#uid_text span').css('font-size').slice(0,-2)));
+		$('#muid_fontsize').val(Math.round($('#muid_text').css('font-size').slice(0,-2)));
+		$('#vuid_fontsize').val(Math.round($('#vuid_text span').css('font-size').slice(0,-2)));
+		
+		$('#uid_span_w').val($('#uid_text span').actual('width'));
+		$('#muid_span_w').val($('#muid_text span').actual('width'));
+		$('#vuid_span_w').val($('#vuid_text span').actual('width'));
+		
+		$('#uid_span_h').val($('#uid_text span').actual('height'));
+		$('#muid_span_h').val($('#muid_text span').actual('height'));
+		$('#vuid_span_h').val($('#vuid_text span').actual('height'));
+		
+		if ($('#muid_text span br').length > 0) {
+			$('#muid_linebreak').val('y');
+		}
+		else {
+			$('#muid_linebreak').val('n');
+		}
+	}
+	
 	/* Default dept. name */
 	
 	if (!($('#id_unit_name').val())) {
@@ -52,6 +76,7 @@ $(document).ready(function(){
 	$('#uid_text').textfill({ minFontPixels: 13, maxFontPixels: 13 });
 	muid_adjust();
 	vuid_adjust();
+	hidden_field_update();
 	
 
 	/* Switch in/out logo previews */
@@ -81,6 +106,7 @@ $(document).ready(function(){
     	$('#uid_text').textfill({ minFontPixels: 10, maxFontPixels: 13 });
 		muid_adjust();
 		vuid_adjust();
+		hidden_field_update();
     });
 
 })

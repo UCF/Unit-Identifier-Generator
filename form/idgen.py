@@ -40,8 +40,8 @@ class IDGen:
 		self.unit_name_caps = self.unit_name.upper()
 		self.unit_name_slug = slugify(self.unit_name)
 	
-	if self.muid_linebreak == 'y':
-		muid_ypos = muid_ypos_ol	
+	#if self.muid_linebreak == 'y':
+	#	muid_ypos = muid_ypos_ol	
 
 	def temporaryrun(self): # Just to get the class running initially
 		font_muid = ImageFont.truetype("form/static/fonts/ameri-webfont.ttf", 100) #replace 100 with font size
