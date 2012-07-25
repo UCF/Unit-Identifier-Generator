@@ -48,7 +48,9 @@ $(document).ready(function(){
 		
 		var full_size_width = 2000,
 			preview_width = 260,
+			muid_preview_width = 450,
 			span_upscale_ratio = full_size_width / preview_width,
+			muid_span_upscale_ratio = full_size_width / muid_preview_width,
 			uid_font_ratio = 5,
 			muid_font_ratio = 6.25,
 			vuid_font_ratio = 5.55;
@@ -58,11 +60,11 @@ $(document).ready(function(){
 		$('#vuid_fontsize').val(Math.round(($('#vuid_text span').css('font-size').slice(0,-2)) * vuid_font_ratio));
 		
 		$('#uid_span_w').val(Math.round(($('#uid_text span').actual('width')) * span_upscale_ratio));
-		$('#muid_span_w').val(Math.round(($('#muid_text span').actual('width')) * span_upscale_ratio));
+		$('#muid_span_w').val(Math.round(($('#muid_text span').actual('width')) * muid_span_upscale_ratio));
 		$('#vuid_span_w').val(Math.round(($('#vuid_text span').actual('width')) * span_upscale_ratio));
 		
 		$('#uid_span_h').val(Math.round(($('#uid_text span').actual('height')) * span_upscale_ratio));
-		$('#muid_span_h').val(Math.round(($('#muid_text span').actual('height')) * span_upscale_ratio));
+		$('#muid_span_h').val(Math.round(($('#muid_text span').actual('height')) * muid_span_upscale_ratio));
 		$('#vuid_span_h').val(Math.round(($('#vuid_text span').actual('height')) * span_upscale_ratio));
 		
 		if ($('#muid_text span br').length > 0) {
