@@ -1,7 +1,6 @@
 from django.shortcuts import get_object_or_404, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
-from django.template.defaultfilters import slugify
 from form.models import Submission, SubmissionForm
 from form.idgen import IDGen
 
@@ -13,10 +12,7 @@ def index(request):
 			form = SubmissionForm(request.POST)
 			if not errors and form.is_valid():
 				
-				unit_name = request.POST.get('unit_name')
-				unit_name_slug = slugify(unit_name)
-				unit_name_caps = unit_name.upper()
-				
+				unit_name = request.POST.get('unit_name')				
 				design_options = request.POST.getlist('design_options')
 				
 				# From here, need to run process only for each selected design option...
@@ -26,7 +22,7 @@ def index(request):
 				#if 'MUID' in design_options:
 					# Do the MUID stuff...
 				
-				muidgen = IDGen("MUID", unit_name_caps, unit_name_slug)
+				muidgen = IDGen("MUID", unit_name)
 				muidgen.temporaryrun()
 					
 				#if 'VUID' in design_options:
