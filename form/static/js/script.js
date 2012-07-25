@@ -1,8 +1,18 @@
 $(document).ready(function(){
 
+	/* Default values for preview dimensions for hidden fields */
+	var uid_span_w = 0,
+		uid_span_h = 0,
+		uid_fontsize = 13,
+		muid_span_w = 0,
+		muid_span_h = 0,
+		muid_fontsize = 16,
+		vuid_span_w = 0,
+		vuid_span_h = 0,
+		vuid_fontsize = 0;
+
 	/* Set UID as default preview in toggle buttons */
-	$('#previewlink_uid').button('toggle');
-	
+	$('#previewlink_uid').button('toggle');	
 	
 	/* Define functions that adjust the MUID and VUID previews: */
 	
@@ -28,8 +38,8 @@ $(document).ready(function(){
 		var vuid_div = $('#vuid_text');
 		vuid_div.textfill({ minFontPixels: 20, maxFontPixels: 36 });
 		
-		var	vuid_span = $('#vuid_text span'),
-			vuid_fontsize = parseInt(vuid_span.css('font-size').slice(0,-2));
+		var	vuid_span = $('#vuid_text span');
+		vuid_fontsize = parseInt(vuid_span.css('font-size').slice(0,-2));
 			
 		// If the font size has changed, change the line height: 
 		vuid_span.css('line-height', vuid_fontsize+'px');
@@ -38,7 +48,48 @@ $(document).ready(function(){
 	
 	/* Define updates to hidden form field values */
 	
-	var hidden_field_update = function() {
+	var hidden_field_update = function() {	
+		
+		/* The below if/else statements are necessary to properly get
+		   the <span> dimensions if that parent <div> is hidden.
+		*/
+		
+		// UID preview: 
+		if (($('#uid_img').hasClass('preview_active')) == false) {
+			$('#uid_img').show();
+			uid_span_w = $('#uid_img span').width();
+			uid_span_h = $('#uid_img span').height();
+			$('#uid_img').hide();
+		}
+		else {
+			uid_span_w = $('#uid_img span').width();
+			uid_span_h = $('#uid_img span').height();
+		}
+		// MUID preview:
+		if (($('#muid_img').hasClass('preview_active')) == false) {
+			$('#muid_img').show();
+			muid_span_w = $('#muid_img span').width();
+			muid_span_h = $('#muid_img span').height();
+			$('#muid_img').hide();
+		}
+		else {
+			muid_span_w = $('#muid_img span').width();
+			muid_span_h = $('#muid_img span').height();
+		}
+		// VUID preview:
+		if (($('#vuid_img').hasClass('preview_active')) == false) {
+			$('#vuid_img').show();
+			vuid_span_w = $('#vuid_img span').width();
+			vuid_span_h = $('#vuid_img span').height();
+			vuid_fontsize = $('#vuid_text span').css('font-size').slice(0,-2);
+			$('#vuid_img').hide();
+		}
+		else {
+			vuid_span_w = $('#vuid_img span').width();
+			vuid_span_h = $('#vuid_img span').height();
+			vuid_fontsize = $('#vuid_text span').css('font-size').slice(0,-2);
+		}
+		
 		
 		/* Each value is determined by what is assumed to be
 		   the value of the full-size raster output. (2000 wide)
@@ -53,19 +104,19 @@ $(document).ready(function(){
 			muid_span_upscale_ratio = full_size_width / muid_preview_width,
 			uid_font_ratio = 5,
 			muid_font_ratio = 6.25,
-			vuid_font_ratio = 5.55;
+			vuid_font_ratio = 5.55;		
 		
-		$('#uid_fontsize').val(Math.round(($('#uid_text span').css('font-size').slice(0,-2)) * uid_font_ratio));
-		$('#muid_fontsize').val(Math.round(($('#muid_text').css('font-size').slice(0,-2)) * muid_font_ratio));
-		$('#vuid_fontsize').val(Math.round(($('#vuid_text span').css('font-size').slice(0,-2)) * vuid_font_ratio));
+		$('#uid_fontsize').val(Math.round(uid_fontsize * uid_font_ratio));
+		$('#muid_fontsize').val(Math.round(muid_fontsize * muid_font_ratio));
+		$('#vuid_fontsize').val(Math.round(vuid_fontsize * vuid_font_ratio));
 		
-		$('#uid_span_w').val(Math.round(($('#uid_text span').actual('width')) * span_upscale_ratio));
-		$('#muid_span_w').val(Math.round(($('#muid_text span').actual('width')) * muid_span_upscale_ratio));
-		$('#vuid_span_w').val(Math.round(($('#vuid_text span').actual('width')) * span_upscale_ratio));
+		$('#uid_span_w').val(Math.round(uid_span_w /** span_upscale_ratio*/));
+		$('#muid_span_w').val(Math.round(muid_span_w /** muid_span_upscale_ratio*/));
+		$('#vuid_span_w').val(Math.round(vuid_span_w /** span_upscale_ratio*/));
 		
-		$('#uid_span_h').val(Math.round(($('#uid_text span').actual('height')) * span_upscale_ratio));
-		$('#muid_span_h').val(Math.round(($('#muid_text span').actual('height')) * muid_span_upscale_ratio));
-		$('#vuid_span_h').val(Math.round(($('#vuid_text span').actual('height')) * span_upscale_ratio));
+		$('#uid_span_h').val(Math.round(uid_span_h /** span_upscale_ratio*/));
+		$('#muid_span_h').val(Math.round(muid_span_h /** muid_span_upscale_ratio*/));
+		$('#vuid_span_h').val(Math.round(vuid_span_h /** span_upscale_ratio*/));
 		
 		if ($('#muid_text span br').length > 0) {
 			$('#muid_linebreak').val('y');
@@ -75,7 +126,8 @@ $(document).ready(function(){
 		}
 	}
 	
-	/* Default dept. name */
+	
+	/* Set default dept. name */
 	
 	if (!($('#id_unit_name').val())) {
 		$('.textfill span').text('Unit Name Here');
@@ -118,7 +170,7 @@ $(document).ready(function(){
 	
     $('#id_unit_name').keyup(function() {
     	$('.textfill span').html(this.value);
-    	$('#uid_text').textfill({ minFontPixels: 10, maxFontPixels: 13 });
+    	$('#uid_text').textfill({ minFontPixels: 13, maxFontPixels: 13 });
 		muid_adjust();
 		vuid_adjust();
 		hidden_field_update();
