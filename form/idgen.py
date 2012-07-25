@@ -29,10 +29,10 @@ class IDGen:
 	muid_ypos_ol = 257 	# If MUID is only on one line, the ypos needs to be this number
 	vuid_ypos = 853
 	
-	def __init__(self, design_option, unit_name, fontsize, spanw, spanh, muid_linebreak):
+	def __init__(self, design_option, unit_name, fontsize, spanw, spanh, muid_linebreak='n'):
 		self.design_option = design_option
 		self.unit_name = unit_name
-		self.fontsize = fontsize
+		self.fontsize = int(fontsize)
 		self.spanw = spanw
 		self.spanh = spanh
 		self.muid_linebreak = muid_linebreak # Whether or not the MUID uses a linebreak
@@ -44,7 +44,7 @@ class IDGen:
 	#	muid_ypos = muid_ypos_ol	
 
 	def temporaryrun(self): # Just to get the class running initially
-		font_muid = ImageFont.truetype("form/static/fonts/ameri-webfont.ttf", 100) #replace 100 with font size
+		font_muid = ImageFont.truetype("form/static/fonts/ameri-webfont.ttf", self.fontsize) #replace 100 with font size
 	
 		muid_k = Image.open("form/static/img/muid/muid-template-rgb.png")	
 		draw = ImageDraw.Draw(muid_k)
