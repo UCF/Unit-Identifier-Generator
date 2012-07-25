@@ -40,17 +40,30 @@ $(document).ready(function(){
 	
 	var hidden_field_update = function() {
 		
-		$('#uid_fontsize').val(Math.round($('#uid_text span').css('font-size').slice(0,-2)));
-		$('#muid_fontsize').val(Math.round($('#muid_text').css('font-size').slice(0,-2)));
-		$('#vuid_fontsize').val(Math.round($('#vuid_text span').css('font-size').slice(0,-2)));
+		/* Each value is determined by what is assumed to be
+		   the value of the full-size raster output. (2000 wide)
+		   These values need to be updated should the dimensions
+		   of the generated logos ever change.
+		*/
 		
-		$('#uid_span_w').val($('#uid_text span').actual('width'));
-		$('#muid_span_w').val($('#muid_text span').actual('width'));
-		$('#vuid_span_w').val($('#vuid_text span').actual('width'));
+		var full_size_width = 2000,
+			preview_width = 260,
+			span_upscale_ratio = full_size_width / preview_width,
+			uid_font_ratio = 5,
+			muid_font_ratio = 6.25,
+			vuid_font_ratio = 5.55;
 		
-		$('#uid_span_h').val($('#uid_text span').actual('height'));
-		$('#muid_span_h').val($('#muid_text span').actual('height'));
-		$('#vuid_span_h').val($('#vuid_text span').actual('height'));
+		$('#uid_fontsize').val(Math.round(($('#uid_text span').css('font-size').slice(0,-2)) * uid_font_ratio));
+		$('#muid_fontsize').val(Math.round(($('#muid_text').css('font-size').slice(0,-2)) * muid_font_ratio));
+		$('#vuid_fontsize').val(Math.round(($('#vuid_text span').css('font-size').slice(0,-2)) * vuid_font_ratio));
+		
+		$('#uid_span_w').val(Math.round(($('#uid_text span').actual('width')) * span_upscale_ratio));
+		$('#muid_span_w').val(Math.round(($('#muid_text span').actual('width')) * span_upscale_ratio));
+		$('#vuid_span_w').val(Math.round(($('#vuid_text span').actual('width')) * span_upscale_ratio));
+		
+		$('#uid_span_h').val(Math.round(($('#uid_text span').actual('height')) * span_upscale_ratio));
+		$('#muid_span_h').val(Math.round(($('#muid_text span').actual('height')) * span_upscale_ratio));
+		$('#vuid_span_h').val(Math.round(($('#vuid_text span').actual('height')) * span_upscale_ratio));
 		
 		if ($('#muid_text span br').length > 0) {
 			$('#muid_linebreak').val('y');
