@@ -3,6 +3,10 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from form.models import Submission, SubmissionForm
 from form.idgen import IDGen
+from django.template.defaultfilters import slugify
+
+from time import gmtime, strftime
+import os
 
 # Create your views here.
 
@@ -29,21 +33,30 @@ def index(request):
 				
 				muid_linebreak = request.POST.get('muid_linebreak')
 				
+				# Designate the file path at which new logos will be saved.
+				# e.g.: generated_logos/my-unit-name-1269884900480978/MUID/MUID-my-unit-name-K.png
+				
+				currenttime = strftime("%Y%m%d%H%M%S", gmtime())
+				
+				generated_logos_dir = "generated_logos/" + slugify(unit_name) + "-" + currenttime + "/"
+				if not os.path.exists(generated_logos_dir):
+				    os.makedirs(generated_logos_dir)
+				
 				# From here, need to run process only for each selected design option...
 				
-				# IDGen() takes up to 6 args: 
-				# design_option, unit_name, fontsize, spanw, spanh, muid_linebreak (optional-muid only)
+				# IDGen() takes up to 7 args: 
+				# design_option, generated_logos_dir, unit_name, fontsize, spanw, spanh, muid_linebreak (optional-muid only)
 				
 				if 'UID' in design_options:
-					uid_gen = IDGen("UID", unit_name, uid_fontsize, uid_spanw, uid_spanh)
+					uid_gen = IDGen("UID", generated_logos_dir, unit_name, uid_fontsize, uid_spanw, uid_spanh)
 					uid_gen.makelogos()
 					
 				if 'MUID' in design_options:				
-					muid_gen = IDGen("MUID", unit_name, muid_fontsize, muid_spanw, muid_spanh, muid_linebreak)
+					muid_gen = IDGen("MUID", generated_logos_dir, unit_name, muid_fontsize, muid_spanw, muid_spanh, muid_linebreak)
 					muid_gen.makelogos()
 					
 				if 'VUID' in design_options:
-					vuid_gen = IDGen("VUID", unit_name, vuid_fontsize, vuid_spanw, vuid_spanh)
+					vuid_gen = IDGen("VUID", generated_logos_dir, unit_name, vuid_fontsize, vuid_spanw, vuid_spanh)
 					vuid_gen.makelogos()
 				
 				form.save()

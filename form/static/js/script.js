@@ -176,4 +176,13 @@ $(document).ready(function(){
 		hidden_field_update();
     });
 
+
+	/* Form on submit popup: */
+	
+	$('#form_submit').click(function(){
+		setTimeout(function() {
+			$('#submit_working').modal('show');
+		}, 700)
+	})
+	
 })

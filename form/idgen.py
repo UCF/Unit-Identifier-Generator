@@ -1,4 +1,5 @@
 from django.template.defaultfilters import slugify
+import os
 
 import PIL
 from PIL import Image
@@ -53,8 +54,9 @@ class IDGen:
 	muid_ypos_ol = 313 	# If MUID is only on one line, the ypos needs to be this number
 	vuid_ypos = 595
 	
-	def __init__(self, design_option, unit_name, fontsize, spanw, spanh, muid_linebreak='n'):
+	def __init__(self, design_option, generated_logos_dir, unit_name, fontsize, spanw, spanh, muid_linebreak='n'):
 		self.design_option = design_option
+		self.generated_logos_dir = generated_logos_dir
 		self.unit_name = unit_name
 		self.fontsize = int(fontsize)
 		self.spanw = int(spanw)
@@ -87,6 +89,11 @@ class IDGen:
 	# This does the actual processing:
 	def makelogos(self):
 		
+		generated_logos_subdir = self.generated_logos_dir + "/" + self.design_option + "/"
+		if not os.path.exists(generated_logos_subdir):
+			os.makedirs(generated_logos_subdir)
+			
+		
 		for color in self.colors:
 			img = Image.open("form/static/img/" + self.design_option + "/" + self.design_option + "-template" + color + ".png")
 			
@@ -112,7 +119,10 @@ class IDGen:
 			# TO-DO: Add black bg fill for .jpegs in self.logos_text_white!
 			
 			for file_type in self.file_types:
+					
+				save_file_path = generated_logos_subdir + self.design_option + "-" + self.unit_name_slug + color + file_type
+				
 				if file_type in self.needs_cmyk_convert:
-					img.convert("CMYK").save(self.design_option + "-" + self.unit_name_slug + color + file_type)
+					img.convert("CMYK").save(save_file_path)
 				else:
-					img.save(self.design_option + "-" + self.unit_name_slug + color + file_type)
+					img.save(save_file_path)
