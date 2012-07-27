@@ -101,12 +101,12 @@ form ul li {
 		/*background: green;*/
 	}
 		#uid_text {
-			top: 136px;
+			top: 135px;
 			left: 97px;
 			width: 260px;
 			height: 50px;
 			font-size: 13px;
-			line-height: 11px;
+			line-height: 13px;
 			text-align: center;
 		}
 		#muid_text {

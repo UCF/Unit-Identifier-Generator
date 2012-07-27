@@ -39,7 +39,7 @@ def index(request):
 					# Do the MUID stuff...
 				
 				muidgen = IDGen("MUID", unit_name, muid_fontsize, muid_spanw, muid_spanh, muid_linebreak)
-				muidgen.temporaryrun()
+				muidgen.makelogos()
 					
 				#if 'VUID' in design_options:
 					# Do the VUID stuff...
