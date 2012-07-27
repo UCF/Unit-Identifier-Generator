@@ -31,18 +31,20 @@ def index(request):
 				
 				# From here, need to run process only for each selected design option...
 				
-				# IDGen() takes 6 args: design_option, unit_name, fontsize, spanw, spanh, muid_linebreak
+				# IDGen() takes up to 6 args: 
+				# design_option, unit_name, fontsize, spanw, spanh, muid_linebreak (optional-muid only)
 				
-				#if 'UID' in design_options:
-					# Do the UID stuff...
-				#if 'MUID' in design_options:
-					# Do the MUID stuff...
-				
-				muidgen = IDGen("MUID", unit_name, muid_fontsize, muid_spanw, muid_spanh, muid_linebreak)
-				muidgen.makelogos()
+				if 'UID' in design_options:
+					uid_gen = IDGen("UID", unit_name, uid_fontsize, uid_spanw, uid_spanh)
+					uid_gen.makelogos()
 					
-				#if 'VUID' in design_options:
-					# Do the VUID stuff...
+				if 'MUID' in design_options:				
+					muid_gen = IDGen("MUID", unit_name, muid_fontsize, muid_spanw, muid_spanh, muid_linebreak)
+					muid_gen.makelogos()
+					
+				if 'VUID' in design_options:
+					vuid_gen = IDGen("VUID", unit_name, vuid_fontsize, vuid_spanw, vuid_spanh)
+					vuid_gen.makelogos()
 				
 				form.save()
 				return render_to_response('form/download.html', {

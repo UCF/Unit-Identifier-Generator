@@ -47,11 +47,11 @@ class IDGen:
 	
 	# Define Raster logo output dimensions/positions (.png, .jpeg) for text positioning later:
 	id_width = 2000 	# All logos use this width
-	uid_ypos = 642
+	uid_ypos = 608
 	muid_xpos = 799
 	muid_ypos = 227
 	muid_ypos_ol = 313 	# If MUID is only on one line, the ypos needs to be this number
-	vuid_ypos = 853
+	vuid_ypos = 595
 	
 	def __init__(self, design_option, unit_name, fontsize, spanw, spanh, muid_linebreak='n'):
 		self.design_option = design_option
