@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.template.defaultfilters import slugify
 import os
 
@@ -68,7 +69,7 @@ class IDGen:
 		self.unit_name_caps = self.unit_name.upper()
 		self.unit_name_slug = slugify(self.unit_name)
 	
-		self.font = ImageFont.truetype("form/static/fonts/ameribol-webfont.ttf", self.fontsize)
+		self.font = ImageFont.truetype(settings.STATIC_ROOT + "fonts/ameribol-webfont.ttf", self.fontsize)
 		
 		if self.design_option == 'MUID':
 			self.xpos = self.muid_xpos
@@ -95,7 +96,7 @@ class IDGen:
 			
 		
 		for color in self.colors:
-			img = Image.open("form/static/img/" + self.design_option + "/" + self.design_option + "-template" + color + ".png")
+			img = Image.open(settings.STATIC_ROOT + "img/" + self.design_option + "/" + self.design_option + "-template" + color + ".png")
 			
 			draw = ImageDraw.Draw(img)
 			

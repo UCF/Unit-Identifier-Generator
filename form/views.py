@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import get_object_or_404, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
@@ -38,7 +39,7 @@ def index(request):
 				
 				currenttime = strftime("%Y%m%d%H%M%S", gmtime())
 				
-				generated_logos_dir = "generated_logos/" + slugify(unit_name) + "-" + currenttime + "/"
+				generated_logos_dir = settings.PROJECT_FOLDER + "/generated_logos/" + slugify(unit_name) + "-" + currenttime + "/"
 				if not os.path.exists(generated_logos_dir):
 				    os.makedirs(generated_logos_dir)
 				
