@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+	/* Enable form submit button if Javascript is enabled: */
+	$('input#form_submit').removeAttr('disabled');
+	
+
 	/* Default values for preview dimensions for hidden fields */
 	var uid_span_w = 0,
 		uid_span_h = 0,
@@ -165,6 +169,15 @@ $(document).ready(function(){
 		vuid_adjust();
 	})
 
+
+	/* Strip HTML characters from incoming input */
+	
+	$('#id_unit_name').keypress(function() {
+	    var strClean = $(this).val().replace(/<|>|=|\*|\/|\\|\{|\}/, '');
+		strClean.slice(0,-1); // Backspace to prevent excess spaces
+	    $(this).val(strClean);
+	});
+	
 
 	/* Textfill + adjustments on keyup */
 	
