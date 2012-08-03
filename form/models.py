@@ -1,6 +1,7 @@
 from django import forms
 from django.db import models
 from django.forms import ModelForm, MultipleChoiceField
+from django.forms.widgets import Textarea
 from django.utils.text import capfirst
 from django.core import exceptions
 from datetime import datetime
@@ -103,46 +104,18 @@ class Submission(models.Model):
 	department = models.CharField(max_length=300)
 	request_date = models.DateTimeField("Requested On", default=datetime.now)
 	design_options = MultiSelectField(max_length=250, choices=LOGO_TYPES)
-	# Add generated file output here when I actually figure that out...
+	comments = models.TextField(blank=True)
 	def __unicode__(self):
 		return self.unit_name
-	
-#class Logo(models.Model):
-#	submission_id = models.ForeignKey(Submission),
-#	submission_name = models.ForeignKey(Submission, to_field="unit_name"),
-#	design_option = models.CharField(max_length=400)
-#	# Now we store each generated color version of the given design option:
-#	# ... if I can figure out how to store the files...
-#	# Color field names correspond to CMYK color code and whether color is
-#	# bright or metallic; g=gold, k=black, w=white, m=metallic, b=bright 
-#	color_g_m = models.CharField("Gold (G) PMS 874 (metallic)", max_length=300)
-#	color_g_b = models.CharField("Gold (G) PMS 7406 (bright)", max_length=300)
-#	color_b = models.CharField("Black (K)", max_length=300)
-#	color_w = models.CharField("White (W)", max_length=300)
-#	color_kg_m = models.CharField("Black/Gold (KG) PMS 874 (metallic)", max_length=300)
-#	color_kg_b = models.CharField("Black/Gold (KG) PMS 7406 (bright)", max_length=300)
-#	color_wg_m = models.CharField("White/Gold (WG) PMS 874 (metallic)", max_length=300)
-#	color_wg_b = models.CharField("White/Gold (WG) PMS 7406 (bright)", max_length=300)
-	# The above fields are temporary to just get some fields in the admin.
-	# Use the below fields when the front-end is set up:
-	
-	# color_g_m = models.FileField()
-	# color_g_b = models.FileField()
-	# color_b = models.FileField()
-	# color_w = models.FileField()
-	# color_kg_m = models.FileField()
-	# color_kg_b = models.FileField()
-	# color_wg_m = models.FileField()
-	# color_wg_b = models.FileField()
-#	def __unicode__(self):
-#		return self.request_name
+		
 
 class SubmissionForm(ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(SubmissionForm, self).__init__(*args, **kwargs)
 		self.fields['requester'].label = 'Your Name'
 		self.fields['department'].label = 'Your Department/Office/College'
+		self.fields['comments'].label = 'Questions or Comments'
 	
 	class Meta:
 		model = Submission
-		fields = ['unit_name', 'requester', 'phone', 'email', 'department', 'design_options']
+		fields = ['unit_name', 'requester', 'phone', 'email', 'department', 'design_options', 'comments']
