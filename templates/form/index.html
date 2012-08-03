@@ -53,11 +53,11 @@
 			<p style="text-align:center;"><small>Previews may vary slightly from final design.</small></p>
 		</div>
 		
-		{% if match_exists_error != False %}
+		{% if match_exists_error %}
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="alert alert-error">
-					<strong>Error:</strong> This unit identifier has already been requested.  Please contact <strong>{{ match_requester }}</strong> of <strong>{{ match_requester_dept }}</strong> for access to the unit identifier files.<br/><br/>
+					<strong>Error:</strong> This unit identifier has already been requested.  {% if match_data %}Please contact <strong>{{ match_requester }}</strong> of <strong>{{ match_requester_dept }}</strong> for access to the unit identifier files.<br/><br/>{% endif %}
 					If you need to request a change to a pre-existing unit identifier, please contact UCF Marketing directly.
 				</div>
 			</div>

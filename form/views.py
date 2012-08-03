@@ -5,6 +5,7 @@ from django.template import RequestContext
 from form.models import Submission, SubmissionForm
 from form.idgen import IDGen
 from django.template.defaultfilters import slugify
+from django.core.exceptions import ObjectDoesNotExist
 
 from time import gmtime, strftime
 import os
@@ -13,19 +14,27 @@ import os
 
 def index(request):
 	errors = []
+	match_data = 'n/a'
+	match_exists_error = False
+	match_requester = ''
+	match_requester_dept = ''
         if request.method == 'POST':
 			form = SubmissionForm(request.POST)
 			if not errors and form.is_valid():
 				
-				requested_unit_name = request.POST.get('unit_name')	
-				match_attempt = Submission.objects.get(unit_name=requested_unit_name)
+				requested_unit_name = request.POST.get('unit_name')
 				
-				if match_attempt != '':
+				try:
+					match_attempt = Submission.objects.filter(unit_name=requested_unit_name).exists()
+				except ObjectDoesNotExist:
+					match_attempt = ''
+				
+				if match_attempt != False:
 					match_exists_error = True
-					match_requester = match_attempt.requester
-					match_requester_dept = match_attempt.department
+					match_data = Submission.objects.get(unit_name=requested_unit_name)
+					match_requester = match_data.requester
+					match_requester_dept = match_data.department
 				else:
-					match_exists_error = False
 					design_options = request.POST.getlist('design_options')			
 				
 					uid_fontsize = request.POST.get('uid_fontsize')
@@ -79,6 +88,7 @@ def index(request):
 		'form': form,
 		'errors': errors,
 		'match_exists_error': match_exists_error,
+		'match_data': match_data,
 		'match_requester': match_requester,
 		'match_requester_dept': match_requester_dept,
 		'name': request.POST.get('name', ''),

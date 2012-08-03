@@ -41,3 +41,4 @@ Thumbs.db
 #####################
 generated_logos/
 testdb.db
+*.pyc
