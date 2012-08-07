@@ -79,7 +79,8 @@ form ul li {
 	width: 260px;
 	height: 200px;
 	font-family: 'AmericanaBold', Georgia, serif;
-	font-variant: small-caps;
+	/*font-variant: small-caps;*/
+	text-transform: uppercase;
 	letter-spacing: 1.3px;
 }
 	#uid_img, #muid_img, #vuid_img {
@@ -118,8 +119,8 @@ form ul li {
 			left: 141px;
 			width: 310px;
 			height: 27px;
-			font-size: 16px;
-			line-height: 15.25px;
+			font-size: 14px;
+			line-height: 13.75px;
 		}
 		#vuid_text {
 			top: 120px;
@@ -129,6 +130,18 @@ form ul li {
 			font-size: 36px;
 			line-height: 30px;
 			text-align: center;
+		}
+		@media screen and (-webkit-min-device-pixel-ratio: 0){
+			/* Webkit margin tweaks for preview text */
+			#uid_text {
+				top: 137px;
+			}
+			#muid_text {
+				top: 93px;
+			}
+			#vuid_text {
+				top: 122px;
+			}
 		}
 
 #uid_preview_toggle {

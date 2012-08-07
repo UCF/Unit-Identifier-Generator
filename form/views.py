@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.mail import send_mail
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
@@ -77,7 +78,13 @@ def index(request):
 						vuid_gen = IDGen("VUID", generated_logos_dir, requested_unit_name, vuid_fontsize, vuid_spanw, vuid_spanh)
 						vuid_gen.makelogos()
 				
+					# Save the form data:
 					form.save()
+					
+					# Email administrators a notification:
+					#send_mail('UCF Unit Identifier Request', 'This is a message', 'somefromaddress@ucf.edu', [settings.ADMINS])
+					
+					# Finally, redirect to the confirmation screen:
 					return render_to_response('form/download.html', {
 						'design_options': design_options
 					}, context_instance=RequestContext(request))
