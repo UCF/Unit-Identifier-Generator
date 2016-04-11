@@ -12,12 +12,12 @@
 		<script type="text/javascript" src="{% static user_stylesheet %}js/script.js"></script>
 	</head>
 	<body>
-		
+
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<h2>Submit a Request</h2>
 				<p>Success!  Your request has been sent to the UCF Marketing Department for further review.  Please allow up to 72 hours for a request approval.</p>
-				<p>Your logo selections were: 
+				<p>Your logo selections were:
 					<ul>
 						{% for option in design_options %}
 						<li>{{ option }}</li>
@@ -25,9 +25,9 @@
 					</ul>
 				</p>
 				<p>If you have any questions, please contact UCF Marketing.</p>
-				<p><a class="btn" href="http://webcom.dev.smca.ucf.edu/uid-generator/">&laquo; Back to UID Generator</a></p>
+				<p><a class="btn" href="/">&laquo; Back to UID Generator</a></p>
 			</div>
 		</div>
-			
+
 	</body>
 </html>
