@@ -21,7 +21,7 @@ Note:  This project is NOT complete and does not fully function.
   - `git clone git@github.com:UCF/Unit-Identifier-Generator.git src`
 3. Navigate to the repo's root directory and install dependencies via pip
   - `cd src`
-  - `pip install requirements.txt`
+  - `pip install -r requirements.txt`
 4. Set up testing db:  `python manage.py migrate --run-syncdb`
 5. Collect static files:  `python manage.py collectstatic`
 6. Run app:  `python manage.py runserver`
