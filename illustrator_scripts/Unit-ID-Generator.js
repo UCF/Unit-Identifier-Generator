@@ -1,37 +1,54 @@
 // uncomment to suppress Illustrator warning dialogs
 // app.userInteractionLevel = UserInteractionLevel.DONTDISPLAYALERTS;
 
-var sourceFolder, files, sourceDoc, targetFile;
+var sourceFolder, folders, files, sourceDoc, targetFile;
 
 // Select the source folder.
-sourceFolder = Folder.selectDialog('Select the folder with EPS files to convert', '~');
+// sourceFolder = Folder.selectDialog('Select the folder with EPS files to convert', '~');
+sourceFolder = Folder('~/Projects/Unit-Identifier-Generator/src/illustrator_scripts/output');
 
 // If a valid folder is selected
 if (sourceFolder !== null) {
     files = [];
+    folders = [];
 
-    // Get all files matching the pattern
-    files = sourceFolder.getFiles('*.eps');
+    folders = sourceFolder.getFiles();
 
-    if (files.length > 0) {
+    if (folders.length > 0) {
+
+        // alert(folders);
         // Get the destination to save the files
-        for (i = 0; i < files.length; i++) {
-            sourceDoc = app.open(files[i]);
+        for (var i = 0; i < folders.length; i++) {
+            if (!folders[i].toString().match(/\.DS_Store|\.BridgeSort/g)) {
+                alert(folders[i]);
 
-            // Export PNG
-            targetFile = new File(sourceDoc.path + '/' + sourceDoc.name.replace('.eps', '.png'));
-            sourceDoc.exportFile(targetFile, ExportType.PNG24, getPNGOptions());
+                // Get all files matching the pattern
+                files = Folder(folders[i]).getFiles('*.eps');
 
-            // Export PDF
-            targetFile = new File(sourceDoc.path + "/" + sourceDoc.name.replace('.eps', '.pdf'));
-            sourceDoc.saveAs(targetFile, getPDFOptions());
+                if (files.length > 0) {
+                    // Get the destination to save the files
+                    for (var j = 0; j < files.length; j++) {
+                        sourceDoc = app.open(files[j]);
 
-            sourceDoc.close(SaveOptions.DONOTSAVECHANGES);
+                        var newName = sourceDoc.name.replace('.eps', '');
+                        // Export PNG
+                        targetFile = new File(sourceDoc.path + '/' + newName + '.png');
+                        sourceDoc.exportFile(targetFile, ExportType.PNG24, getPNGOptions());
+
+                        // Export PDF
+                        targetFile = new File(sourceDoc.path + "/" + newName + '.pdf');
+                        sourceDoc.saveAs(targetFile, getPDFOptions());
+
+                        sourceDoc.close(SaveOptions.DONOTSAVECHANGES);
+                    }
+                } else {
+                    alert('No matching files found');
+                }
+            }
         }
         alert('Files have been saved as PNG and PDF files');
-    }
-    else {
-        alert('No matching files found');
+    } else {
+        alert('No folders found');
     }
 }
 
