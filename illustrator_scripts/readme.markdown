@@ -1,6 +1,7 @@
 # Generate Unit Identifiers using Illustrator
 
 ## Setup Illustrator
+1. Open Illustrator
 1. Open actions window and load unit-id.aia action
 1. Copy Unit-ID-Generator.js file to /Illustrator CC/Presets/en_US/Scripts folder
 1. Restart Illustrator
@@ -15,4 +16,4 @@
 
 ## Create PNG and PDF files
 1. Select File -> Scripts -> Unit ID Generator
-1. PNG and PDF versions are generated in the folder you specify
+1. PNG and PDF images are generated and copied into new unit id folders allong with the EPS file
